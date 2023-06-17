@@ -1,24 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import withDataLoader from "./components/withDataLoader";
+import Bored from "./components/Bored";
+import University from "./components/University";
+
+const UniversityWithDataLoader = withDataLoader({
+  WrappedComponent: University,
+  dataUrl: "http://universities.hipolabs.com/search?country=India",
+});
+
+const BoredWithDataLoader = withDataLoader({
+  WrappedComponent: Bored,
+  dataUrl: "http://www.boredapi.com/api/activity",
+});
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Higher Order Component Example</h1>
+      <BoredWithDataLoader />
+      <UniversityWithDataLoader />
     </div>
   );
 }
